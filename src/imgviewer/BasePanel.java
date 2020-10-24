@@ -8,8 +8,6 @@ package imgviewer;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author kamra
  */
-public class BasePanel extends JPanel implements MouseListener{
+public class BasePanel extends JPanel{
     
     private JLabel myLabel = new JLabel("Space for picture");
     private JButton openBtn = new JButton("Open");
@@ -26,6 +24,8 @@ public class BasePanel extends JPanel implements MouseListener{
 
     public BasePanel(LayoutManager layout) {
         super(layout);
+        MousePosition position = new MousePosition();
+        this.addMouseListener(position);
         this.openBtn.addActionListener((ev) -> openAction());
         this.saveBtn.addActionListener((ev) -> saveAction());
         add(this.myLabel, BorderLayout.CENTER);
@@ -33,7 +33,6 @@ public class BasePanel extends JPanel implements MouseListener{
         BtnPanel.add(this.openBtn);
         BtnPanel.add(this.saveBtn);
         add(BtnPanel, BorderLayout.SOUTH);
-        addMouseListener(this);
     }
     
     public void openAction(){
@@ -42,24 +41,5 @@ public class BasePanel extends JPanel implements MouseListener{
     
     public void saveAction(){
         System.out.println(this.saveBtn.getText());
-    }
-    
-    public void mousePressed(MouseEvent e) {
-    }
-
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    public void mouseExited(MouseEvent e) {
-    }
-
-    public void mouseClicked(MouseEvent e) {
-       System.out.println(e.getX() + ", " + e.getY());
-    }
-
-    void saySomething(String eventDescription, MouseEvent e) {
     }
 }
