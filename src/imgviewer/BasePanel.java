@@ -11,6 +11,7 @@ import java.awt.LayoutManager;
 import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,7 +26,7 @@ public class BasePanel extends JPanel {
     private JButton saveBtn = new JButton("Save");
     private JFileChooser chooseFile = new JFileChooser();
 
-    public BasePanel(LayoutManager layout) {
+    public BasePanel(LayoutManager layout, JFrame frame) {
         super(layout);
         MousePosition position = new MousePosition();
         this.addMouseListener(position);

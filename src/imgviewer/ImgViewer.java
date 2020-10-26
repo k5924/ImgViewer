@@ -26,7 +26,7 @@ public class ImgViewer extends JFrame{
         setTitle("Image annotator");
         
         LayoutManager layout = new BorderLayout();
-        BasePanel myPanel = new BasePanel(layout);
+        BasePanel myPanel = new BasePanel(layout, this);
         add(myPanel);
         
         pack();
