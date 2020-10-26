@@ -12,7 +12,6 @@ import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +20,6 @@ import javax.swing.JPanel;
  */
 public class BasePanel extends JPanel {
 
-    private JLabel myLabel = new JLabel("Space for picture");
     private JButton openBtn = new JButton("Open");
     private JButton saveBtn = new JButton("Save");
     private JFileChooser chooseFile = new JFileChooser();
@@ -32,7 +30,7 @@ public class BasePanel extends JPanel {
         this.addMouseListener(position);
         this.openBtn.addActionListener((ev) -> openAction());
         this.saveBtn.addActionListener((ev) -> saveAction());
-        add(this.myLabel, BorderLayout.CENTER);
+        // add(this.myLabel, BorderLayout.CENTER);
         JPanel BtnPanel = new JPanel(new GridLayout(1, 2));
         BtnPanel.add(this.openBtn);
         BtnPanel.add(this.saveBtn);
@@ -43,7 +41,7 @@ public class BasePanel extends JPanel {
         int returnVal = this.chooseFile.showDialog(BasePanel.this, "Select an image");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = this.chooseFile.getSelectedFile();
-            System.out.println(file.getAbsolutePath());
+            // System.out.println(file.getAbsolutePath());
         }
         this.chooseFile.setSelectedFile(null);
         // resets the selected file so that the file chooser variable can be reused
