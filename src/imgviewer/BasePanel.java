@@ -9,6 +9,9 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -28,20 +31,28 @@ public class BasePanel extends JPanel {
         super(layout);
         MousePosition position = new MousePosition();
         this.addMouseListener(position);
-        this.openBtn.addActionListener((ev) -> openAction());
+        this.openBtn.addActionListener((ev) -> {
+            try {
+                openAction();
+                frame.pack();
+            } catch (IOException ex) {
+                Logger.getLogger(BasePanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.saveBtn.addActionListener((ev) -> saveAction());
-        // add(this.myLabel, BorderLayout.CENTER);
         JPanel BtnPanel = new JPanel(new GridLayout(1, 2));
         BtnPanel.add(this.openBtn);
         BtnPanel.add(this.saveBtn);
         add(BtnPanel, BorderLayout.SOUTH);
     }
 
-    public void openAction() {
+    public void openAction() throws IOException {
         int returnVal = this.chooseFile.showDialog(BasePanel.this, "Select an image");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = this.chooseFile.getSelectedFile();
             // System.out.println(file.getAbsolutePath());
+            LoadImage img = new LoadImage(file.getAbsolutePath());
+            add(img, BorderLayout.CENTER);
         }
         this.chooseFile.setSelectedFile(null);
         // resets the selected file so that the file chooser variable can be reused
