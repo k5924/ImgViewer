@@ -5,6 +5,7 @@
  */
 package imgviewer;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -22,9 +23,12 @@ public class LoadImage extends JPanel{
 
     public LoadImage(String path) throws IOException{
         this.img = ImageIO.read(new File(path));
+        this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
     }
     
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g = g.create();
         g.drawImage(this.img, 0, 0, null);
     }
 }

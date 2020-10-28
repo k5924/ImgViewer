@@ -27,7 +27,7 @@ public class ImgViewer extends JFrame{
         
         LayoutManager layout = new BorderLayout();
         BasePanel myPanel = new BasePanel(layout, this);
-        add(myPanel);
+        getContentPane().add(myPanel);
         
         pack();
         setVisible(true);
