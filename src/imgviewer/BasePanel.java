@@ -51,7 +51,7 @@ public class BasePanel extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = this.chooseFile.getSelectedFile();
             // System.out.println(file.getAbsolutePath());
-            LoadImage img = new LoadImage(file.getAbsolutePath());
+            LoadImage img = new LoadImage(file);
             add(img, BorderLayout.CENTER);
         }
         this.chooseFile.setSelectedFile(null);

@@ -7,7 +7,7 @@ package imgviewer;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -19,10 +19,10 @@ import javax.swing.JPanel;
  */
 public class LoadImage extends JPanel{
     
-    private Image img;
+    private BufferedImage img;
 
-    public LoadImage(String path) throws IOException{
-        this.img = ImageIO.read(new File(path));
+    public LoadImage(File file) throws IOException{
+        this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
     }
     
