@@ -51,7 +51,6 @@ public class BasePanel extends JPanel {
         int returnVal = this.chooseFile.showDialog(BasePanel.this, "Select an image");
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = this.chooseFile.getSelectedFile();
-            // System.out.println(file.getAbsolutePath());
             this.img.showImage(file);
             add(this.img, BorderLayout.CENTER);
         }
