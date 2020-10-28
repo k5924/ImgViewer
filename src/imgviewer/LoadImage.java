@@ -24,11 +24,12 @@ public class LoadImage extends JPanel{
     public LoadImage(File file) throws IOException{
         this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
+        this.repaint();
     }
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g = g.create();
-        g.drawImage(this.img, 0, 0, null);
+        g.drawImage(this.img, 0, 0, this);
     }
 }
