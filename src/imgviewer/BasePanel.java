@@ -26,6 +26,7 @@ public class BasePanel extends JPanel {
     private JButton openBtn = new JButton("Open");
     private JButton saveBtn = new JButton("Save");
     private JFileChooser chooseFile = new JFileChooser();
+    private static LoadImage img = new LoadImage();
 
     public BasePanel(LayoutManager layout, JFrame frame) {
         super(layout);
@@ -51,8 +52,8 @@ public class BasePanel extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = this.chooseFile.getSelectedFile();
             // System.out.println(file.getAbsolutePath());
-            LoadImage img = new LoadImage(file);
-            add(img, BorderLayout.CENTER);
+            this.img.showImage(file);
+            add(this.img, BorderLayout.CENTER);
         }
         this.chooseFile.setSelectedFile(null);
         // resets the selected file so that the file chooser variable can be reused

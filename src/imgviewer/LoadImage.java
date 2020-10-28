@@ -21,7 +21,7 @@ public class LoadImage extends JPanel{
     
     private BufferedImage img;
 
-    public LoadImage(File file) throws IOException{
+    public void showImage(File file) throws IOException{
         this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
         this.repaint();
@@ -30,6 +30,8 @@ public class LoadImage extends JPanel{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g = g.create();
-        g.drawImage(this.img, 0, 0, this);
+        if (this.img != null){
+          g.drawImage(this.img, 0, 0, this);  
+        }
     }
 }
