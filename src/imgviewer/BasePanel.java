@@ -10,11 +10,10 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -30,14 +29,14 @@ public class BasePanel extends JPanel {
 
     public BasePanel(LayoutManager layout, JFrame frame) {
         super(layout);
-        MousePosition position = new MousePosition();
+        MousePosition position = new MousePosition(frame);
         this.addMouseListener(position);
         this.openBtn.addActionListener((ev) -> {
             try {
                 openAction();
                 frame.pack();
-            } catch (IOException ex) {
-                Logger.getLogger(BasePanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(frame, "File cannot be loaded as an image", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         });
         this.saveBtn.addActionListener((ev) -> saveAction());
@@ -60,7 +59,7 @@ public class BasePanel extends JPanel {
 
     public void saveAction() {
         int returnVal = this.chooseFile.showSaveDialog(BasePanel.this);
-        if (returnVal == JFileChooser.APPROVE_OPTION){
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("Saved file");
         }
         this.chooseFile.setSelectedFile(null);
