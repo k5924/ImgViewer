@@ -7,13 +7,21 @@ package imgviewer;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author kamra
  */
-public class MousePosition implements MouseListener{
-  
+public class MousePosition implements MouseListener {
+
+    private JFrame frame;
+
+    public MousePosition(JFrame frame) {
+        this.frame = frame;
+    }
+
     public void mousePressed(MouseEvent e) {
     }
 
@@ -27,6 +35,10 @@ public class MousePosition implements MouseListener{
     }
 
     public void mouseClicked(MouseEvent e) {
-       System.out.println(e.getX() + ", " + e.getY());
+        System.out.println(e.getX() + ", " + e.getY());
+        String annotation = (String) JOptionPane.showInputDialog(this.frame, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
+        if (annotation != null) {
+            System.out.println(annotation);
+        }
     }
 }
