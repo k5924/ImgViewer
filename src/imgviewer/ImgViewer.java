@@ -15,20 +15,19 @@ import javax.swing.SwingUtilities;
  *
  * @author kamra
  */
-public class ImgViewer extends JFrame{
+public class ImgViewer extends JFrame {
 
     /**
      * @param args the command line arguments
      */
-          
     public ImgViewer() throws HeadlessException {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Image annotator");
-        
+
         LayoutManager layout = new BorderLayout();
         BasePanel myPanel = new BasePanel(layout, this);
         getContentPane().add(myPanel);
-        
+
         pack();
         setVisible(true);
     }
@@ -36,10 +35,10 @@ public class ImgViewer extends JFrame{
     public static void launch() {
         new ImgViewer();
     }
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
-        SwingUtilities.invokeLater(()->launch());
+        SwingUtilities.invokeLater(() -> launch());
     }
-    
+
 }
