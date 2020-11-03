@@ -29,8 +29,6 @@ public class BasePanel extends JPanel {
 
     public BasePanel(LayoutManager layout, JFrame frame) {
         super(layout);
-        MousePosition position = new MousePosition(frame);
-        this.addMouseListener(position);
         this.openBtn.addActionListener((ev) -> {
             try {
                 openAction();
