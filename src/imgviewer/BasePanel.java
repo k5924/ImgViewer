@@ -6,10 +6,15 @@
 package imgviewer;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -37,7 +42,13 @@ public class BasePanel extends JPanel {
                 JOptionPane.showMessageDialog(frame, "File cannot be loaded as an image", "Warning", JOptionPane.WARNING_MESSAGE);
             }
         });
-        this.saveBtn.addActionListener((ev) -> saveAction());
+        this.saveBtn.addActionListener((ev) -> {
+            try {
+                saveAction();
+            } catch (IOException ex) {
+                Logger.getLogger(BasePanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         JPanel BtnPanel = new JPanel(new GridLayout(1, 2));
         BtnPanel.add(this.openBtn);
         BtnPanel.add(this.saveBtn);
@@ -55,10 +66,16 @@ public class BasePanel extends JPanel {
         // resets the selected file so that the file chooser variable can be reused
     }
 
-    public void saveAction() {
+    public void saveAction() throws IOException {
         int returnVal = this.chooseFile.showSaveDialog(BasePanel.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("Saved file");
+            File file = this.chooseFile.getSelectedFile();
+            BufferedImage image = new BufferedImage(this.img.getWidth(), this.img.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics g = image.createGraphics();
+            this.img.printAll(g);
+            g.dispose();
+            ImageIO.write(image, "jpg", file);
+            JOptionPane.showMessageDialog(this, "Image saved", "Complete", JOptionPane.INFORMATION_MESSAGE);
         }
         this.chooseFile.setSelectedFile(null);
     }

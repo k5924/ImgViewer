@@ -27,7 +27,7 @@ public class LoadImage extends JPanel implements MouseListener {
 
     private BufferedImage img;
     private final Collection<Drawable> drawables = new LinkedHashSet<Drawable>();
-    private String annotation;
+    private String text;
     private int x, y;
 
     public void showImage(File file) throws IOException {
@@ -48,13 +48,10 @@ public class LoadImage extends JPanel implements MouseListener {
         g = g.create();
         if (this.img != null) {
             g.drawImage(this.img, 0, 0, this);
-            if (this.annotation!=null){
-                g.setColor(Color.YELLOW);
-                g.setFont( getFont().deriveFont( 12f));
-                g.drawString(this.annotation, this.x+20, this.y+20);
-                for (Drawable d : this.drawables) {
-                    d.draw(g);
-                }
+            g.setColor(Color.YELLOW);
+            g.setFont(getFont().deriveFont(12f));
+            for (Drawable d : this.drawables) {
+                d.draw(g);
             }
         }
     }
@@ -73,11 +70,11 @@ public class LoadImage extends JPanel implements MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getX() + ", " + e.getY());
-        this.annotation = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
-        if (!(this.annotation.equals(""))) {
+        this.text = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
+        if (!(this.text.equals(""))) {
             this.x = e.getX();
             this.y = e.getY();
-            this.addDrawable(new Circle(this.x, this.y, Color.YELLOW, 10));
+            this.addDrawable(new Circle(this.x, this.y, Color.YELLOW, 10, this.text));
         }
     }
 }
