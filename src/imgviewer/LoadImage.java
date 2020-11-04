@@ -45,7 +45,6 @@ public class LoadImage extends JPanel implements MouseListener {
         g = g.create();
         if (this.img != null) {
             g.drawImage(this.img, 0, 0, this);
-            g.setColor(Color.YELLOW);
             g.setFont(getFont().deriveFont(12f));
             for (Drawable d : this.drawables) {
                 d.draw(g);
