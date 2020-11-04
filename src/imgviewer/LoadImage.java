@@ -65,9 +65,25 @@ public class LoadImage extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        String text = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
-        if (text != null && text.length() > 0) {
-            this.addDrawable(new Circle(e.getX(), e.getY(), Color.YELLOW, 10, text));
+        int count = 0;
+        Drawable annotation = new Circle(0, 0, Color.WHITE, 0, "");
+        for (Drawable d : this.drawables) {
+            if ((((Circle) d).getX() - 10 < e.getX()) && (((Circle) d).getX() + 10 > e.getX()) && (((Circle) d).getY() - 10 < e.getY()) && (((Circle) d).getY() + 10 > e.getY())) {
+                count = 1;
+                annotation = d;
+            }
+        }
+        if (count != 1) {
+            String text = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
+            if (text != null && text.length() > 0) {
+                this.addDrawable(new Circle(e.getX(), e.getY(), Color.YELLOW, 10, text));
+            }
+        } else {
+            int returnVal = JOptionPane.showConfirmDialog(this, "Remove annotation?");
+            if (returnVal == JOptionPane.YES_OPTION) {
+                this.drawables.remove(annotation);
+                repaint();
+            }
         }
     }
 }
