@@ -27,14 +27,11 @@ public class LoadImage extends JPanel implements MouseListener {
 
     private BufferedImage img;
     private final Collection<Drawable> drawables = new LinkedHashSet<Drawable>();
-    private String text;
-    private int x, y;
 
     public void showImage(File file) throws IOException {
         this.drawables.clear();
         this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
-        this.repaint();
         addMouseListener(this);
     }
 
@@ -69,12 +66,9 @@ public class LoadImage extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getX() + ", " + e.getY());
-        this.text = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
-        if (!(this.text.equals(""))) {
-            this.x = e.getX();
-            this.y = e.getY();
-            this.addDrawable(new Circle(this.x, this.y, Color.YELLOW, 10, this.text));
+        String text = (String) JOptionPane.showInputDialog(this, "Enter annotation text", "Input", JOptionPane.QUESTION_MESSAGE);
+        if (text != null && text.length() > 0) {
+            this.addDrawable(new Circle(e.getX(), e.getY(), Color.YELLOW, 10, text));
         }
     }
 }
