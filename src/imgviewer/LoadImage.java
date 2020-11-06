@@ -33,6 +33,7 @@ public class LoadImage extends JPanel implements MouseListener {
         this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
         addMouseListener(this);
+        this.repaint();
     }
 
     public void addDrawable(Drawable d) {
