@@ -31,7 +31,6 @@ public class Circle extends AbstractCircle {
 
     protected void paint(Graphics g) {
         g.drawOval((int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius));
-        g.setColor(Color.YELLOW);
         g.drawString(this.annotation, x + 20, y + 20);
     }
 }
