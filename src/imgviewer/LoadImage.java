@@ -29,6 +29,7 @@ public class LoadImage extends JPanel implements MouseListener {
     private final Collection<Drawable> drawables = new LinkedHashSet<Drawable>();
 
     public void showImage(File file) throws IOException {
+        removeMouseListener(this);
         this.drawables.clear();
         this.img = ImageIO.read(file);
         this.setPreferredSize(new Dimension(this.img.getWidth(this), this.img.getHeight(this)));
