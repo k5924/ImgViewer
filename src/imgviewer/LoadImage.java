@@ -16,14 +16,14 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
  * @author kamra
  */
-public class LoadImage extends JPanel implements MouseListener {
+public class LoadImage extends JComponent implements MouseListener {
 
     private BufferedImage img;
     private final Collection<Drawable> drawables = new LinkedHashSet<Drawable>();
