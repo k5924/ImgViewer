@@ -53,5 +53,15 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
 # End of https://www.toptal.com/developers/gitignore/api/java,windows
 
