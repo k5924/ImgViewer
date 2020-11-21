@@ -14,23 +14,23 @@ import java.awt.Graphics;
  */
 public class Circle extends AbstractCircle {
 
-    private String annotation;
+	private String annotation;
 
-    public Circle(int x, int y, Color color, double radius, String text) {
-        super(x, y, color, radius);
-        this.annotation = text;
-    }
+	public Circle(int x, int y, Color color, double radius, String text) {
+		super(x, y, color, radius);
+		this.annotation = text;
+	}
 
-    public int getX() {
-        return x;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getY() {
-        return y;
-    }
+	public int getY() {
+		return y;
+	}
 
-    protected void paint(Graphics g) {
-        g.drawOval((int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius));
-        g.drawString(this.annotation, x + 20, y + 20);
-    }
+	protected void paint(Graphics g) {
+		g.drawOval((int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius));
+		g.drawString(this.annotation, x + 20, y + 20);
+	}
 }
